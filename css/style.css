@@ -2257,3 +2257,11 @@ body.page-artist .header--home,
 body.page-work .header--home{
   background: var(--home-header) !important;
 }
+/* =========================
+   Mobile：隱藏左上角頁面標題（避免撞輪播）
+   ========================= */
+@media (max-width: 640px) {
+  .brandText {
+    display: none;
+  }
+}
