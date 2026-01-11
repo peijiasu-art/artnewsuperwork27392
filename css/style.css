@@ -2249,3 +2249,30 @@ html, body {
   min-height: 0 !important;    /* ✅ 防止舊設定撐高 */
   object-fit: contain;         /* 不裁切圖片 */
 }
+/* ===== FIX：取消舊版 height:100% 撐高（輪播底下凸出那塊就是它）===== */
+.heroCarousel,
+.heroCarouselViewport,
+.heroCarouselTrack,
+.heroCarouselSlide,
+.heroCarouselImg{
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* 圖片用原比例，不裁切 */
+.heroCarouselImg{
+  display: block;
+  width: 100%;
+  object-fit: contain !important;
+}
+
+/* 如果你的 .homeHero / .artistsHero / .aboutHero 等有 min-height:calc(100vh-72px)
+   也會把輪播硬撐高 → 這裡一起解除 */
+.homeHero,
+.artistsHero,
+.aboutHero,
+.worksHero{
+  min-height: 0 !important;
+  height: auto !important;
+  padding-bottom: 0 !important;
+}
