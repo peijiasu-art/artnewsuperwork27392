@@ -2274,3 +2274,32 @@ html, body {
   height: auto !important;
   padding-bottom: 0 !important;
 }
+/* ===== FIX: heroCarousel--boxed 底下凸出框 / 空白 ===== */
+.heroCarousel--boxed{
+  height: auto !important;
+  min-height: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden;
+}
+
+/* 取消舊版 height:100% 撐高（只鎖 boxed） */
+.heroCarousel--boxed .heroCarouselViewport,
+.heroCarousel--boxed .heroCarouselTrack,
+.heroCarousel--boxed .heroCarouselSlide{
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* 圖片：保持原比例，不裁切，並確保不會留出多餘高度 */
+.heroCarousel--boxed .heroCarouselImg{
+  display: block;
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* 如果你看到「下方多一條深色背景」通常是 slide 背景/內距造成 */
+.heroCarousel--boxed .heroCarouselSlide{
+  background: transparent !important;
+  padding: 0 !important;
+}
