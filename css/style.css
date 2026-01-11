@@ -121,18 +121,20 @@ p, li, a, b, span {
 /* =========================================================
    4. 頁首導航系統 (Header & Navigation)
    ========================================================= */
+/* ✅ 導覽列「浮」在圖片上 */
 .header {
-  position: fixed;   /* ✅ 改成 fixed 才會疊在輪播圖上 */
+  position: fixed;     /* ❗一定要 fixed，不是 sticky */
   top: 0;
   left: 0;
-  z-index: 999;
   width: 100%;
+  z-index: 999;
 }
 
-
+/* ✅ 完全透明 */
 .header--home {
-  background: transparent;   /* ✅ 讓輪播圖透出來 */
+  background: transparent; /* ❗不是半透明 */
 }
+
 
 
 .navbar {
@@ -2098,43 +2100,16 @@ body.home {
   .artistCarouselPrev{ left: 10px; }
   .artistCarouselNext{ right: 10px; }
 }
-/* 讓導覽列疊在輪播圖上 */
-.header--home{
-  position: fixed;     /* 固定在上方 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  background: transparent; /* 透明，看到後面的輪播圖 */
-  border-bottom: 1px solid rgba(254,254,254,.14);
-}
-
-/* 讓 navbar 內容有一點可讀性（可選：半透明底） */
-.navbar--home{
-  background: rgba(23,17,12,.18);     /* 想更像截圖：用很淡的透明底 */
-  backdrop-filter: blur(6px);         /* 有支援才會模糊，不支援也沒差 */
-}
-
-/* 避免主內容被 fixed header 壓住：主視覺往下推一個 header 高度 */
-.homeMain,
-.page-about .aboutMain,
-.page-artists .artistsMain,
-.page-works .worksMain,
-.page-artist .artistMain,
-.page-work .workMain{
-  padding-top: 72px; /* 這裡填你 header 實際高度（你之前常用 72px） */
-}
-.homeHero.heroCarousel,
-.aboutHero.heroCarousel,
-.artistsHero.heroCarousel,
-.worksHero.heroCarousel{
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
 .homeMain,
 .aboutMain,
 .artistsMain,
-.worksMain{
-padding-top: ;  /* 72px = 你的 header 高度(你之前一直用這個) */
+.worksMain,
+.artistMain,
+.workMain {
+  padding-top: 0;
+}
+.homeHero {
+  width: 100%;
+  min-height: 100vh; /* 🔑 關鍵 */
+  overflow: hidden;
 }
