@@ -2135,8 +2135,6 @@ body.home {
 .homeMain,
 .aboutMain,
 .artistsMain,
-.worksMain,
-.artistMain,
-.workMain{
-  padding-top: 72px;  /* 72px = 你的 header 高度(你之前一直用這個) */
+.worksMain{
+padding-top: ;  /* 72px = 你的 header 高度(你之前一直用這個) */
 }
