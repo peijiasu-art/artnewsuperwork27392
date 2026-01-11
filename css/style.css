@@ -189,7 +189,7 @@ p, li, a, b, span {
 }
 
 .mobile-menu a {
-  padding: 14px 6px;
+  padding: 18px 18px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   color: var(--home-ink);
   font-weight: 600;
