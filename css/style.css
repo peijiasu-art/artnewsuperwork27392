@@ -122,22 +122,29 @@ p, li, a, b, span {
    4. 頁首導航系統 (Header & Navigation)
    ========================================================= */
 .header {
-  position: sticky;
+  position: fixed;   /* ✅ 改成 fixed 才會疊在輪播圖上 */
   top: 0;
-  z-index: 100;
+  left: 0;
+  z-index: 999;
   width: 100%;
 }
 
+
 .header--home {
-  background: var(--home-header);
+  background: transparent;   /* ✅ 讓輪播圖透出來 */
 }
+
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 0;
+
+  background: rgba(23, 17, 12, 0.18);  /* ✅ 淡淡一層，字才清楚 */
+  backdrop-filter: blur(6px);          /* 可留著，不支援也不影響 */
 }
+
 
 .brandText {
   color: var(--home-ink);
@@ -2124,4 +2131,12 @@ body.home {
   width: 100vw;
   margin-left: 50%;
   transform: translateX(-50%);
+}
+.homeMain,
+.aboutMain,
+.artistsMain,
+.worksMain,
+.artistMain,
+.workMain{
+  padding-top: 72px;  /* 72px = 你的 header 高度(你之前一直用這個) */
 }
