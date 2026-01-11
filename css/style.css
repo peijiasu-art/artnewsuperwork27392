@@ -2163,3 +2163,25 @@ html, body {
   padding: 0;
   overflow-x: hidden;
 }
+/* ======================================
+   🔥 Header 全透明（覆蓋所有霧面/模糊/背景）
+   ====================================== */
+
+.header,
+.header--home{
+  background: transparent !important;
+  backdrop-filter: none !important;          /* 如果之前有 blur */
+  -webkit-backdrop-filter: none !important;  /* iOS */
+  box-shadow: none !important;
+  border-bottom: 0 !important;
+}
+
+/* 有些人把霧面寫在 navbar 或 container 上，也一起殺掉 */
+.navbar,
+.navbar--home,
+.header .container{
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
