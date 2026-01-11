@@ -1658,7 +1658,7 @@ body.home {
 /* 輪播可視區 */
 .heroCarouselViewport {
   width: 100%;
-  aspect-ratio: 1724 / 950;   /* 🔑 用比例，不用寫死高度 */
+  aspect-ratio: 3463 / 1790;   /* 🔑 用比例，不用寫死高度 */
   overflow: hidden;
 }
 
@@ -1751,7 +1751,7 @@ body.home {
 /* 輪播外框（置中留白版：左右會留空是正常的） */
 .heroCarousel{
   width: min(980px, calc(100% - 48px));
-  margin: 24px auto 0;
+  margin: auto 0;
 }
 
 /* ✅ 直角：把所有圓角取消 */
@@ -1805,7 +1805,7 @@ body.home {
 .heroCarousel{
   display: block !important;
   width: min(980px, calc(100% - 48px)) !important; /* 置中留白版 */
-  margin: 24px auto 0 !important;
+  margin:  auto 0 !important;
 
   /* ⭐ 清掉舊滿版偏移 */
   margin-left: auto !important;
