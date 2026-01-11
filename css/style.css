@@ -2185,3 +2185,26 @@ html, body {
   -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
 }
+/* ======================================
+   Header 滾動後出現背景
+   ====================================== */
+
+/* 預設：透明（你現在的狀態） */
+.header{
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+/* ⬇️ 捲動後的狀態 */
+.header.is-scrolled{
+  background: var(--home-header);   /* 你原本的棕色 */
+  backdrop-filter: none;            /* 保持實色 */
+}
+
+/* 如果你想要「半透明實色」可以改成這樣（選一個） */
+/*
+.header.is-scrolled{
+  background: rgba(91, 78, 63, 0.92);
+}
+*/
