@@ -2303,3 +2303,37 @@ html, body {
   background: transparent !important;
   padding: 0 !important;
 }
+/* =========================
+   Fix：輪播圖底部多一條線 / 突出框
+   直接覆蓋掉輪播容器的 border / shadow / gap
+   ========================= */
+
+/* 1) 先確保 section 本身不產生外距造成露出一條底色 */
+.heroCarousel{
+  margin: 0 !important;
+}
+
+/* 2) 你這版叫 heroCarousel--boxed：把外框的線/陰影拿掉 */
+.heroCarousel--boxed{
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;   /* 你之前也說要直角 */
+  overflow: hidden;
+}
+
+/* 3) 有時候線是 viewport 自己的 border 或陰影 */
+.heroCarousel--boxed .heroCarouselViewport{
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* 4) 如果你之前有寫輪播底部 border-bottom（很常見），直接砍掉 */
+.heroCarousel--boxed{
+  border-bottom: 0 !important;
+}
+
+/* 5) 避免圖片下面出現「1~2px 的空隙」(inline img 常見問題) */
+.heroCarouselImg{
+  display: block;
+}
