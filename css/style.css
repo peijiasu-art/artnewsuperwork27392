@@ -2337,3 +2337,8 @@ html, body {
 .heroCarouselImg{
   display: block;
 }
+/* 如果是下面區塊頂部在作怪（看起來像輪播底部一條線） */
+.homeButtons{
+  border-top: 0 !important;
+  box-shadow: none !important;
+}
