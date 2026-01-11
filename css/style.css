@@ -2342,3 +2342,45 @@ html, body {
   border-top: 0 !important;
   box-shadow: none !important;
 }
+/* =========================
+   HERO CAROUSEL：高度完全交給圖片
+   ========================= */
+
+/* 外層 section：不要高度 */
+.heroCarousel,
+.heroCarousel--boxed{
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+/* viewport 不要限制高度 */
+.heroCarouselViewport{
+  height: auto !important;
+  overflow: hidden;
+}
+
+/* track 不要撐高 */
+.heroCarouselTrack{
+  height: auto !important;
+}
+
+/* 每一張 slide */
+.heroCarouselSlide{
+  height: auto !important;
+}
+
+/* 關鍵：圖片用「原始比例撐高度」 */
+.heroCarouselImg{
+  width: 100%;
+  height: auto !important;   /* ⭐ 核心 */
+  display: block;
+  object-fit: contain;       /* 不裁切 */
+  object-position: center;
+  background: transparent;
+}
