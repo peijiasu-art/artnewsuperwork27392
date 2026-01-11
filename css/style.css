@@ -2208,3 +2208,17 @@ html, body {
   background: rgba(91, 78, 63, 0.92);
 }
 */
+/* 預設：在輪播圖上 → 全透明 */
+.header.header--home {
+  background: transparent;
+}
+
+/* 捲動後：出現棕色背景 */
+.header.is-scrolled.header--home {
+  background: var(--home-header);
+}
+
+/* 過渡效果 */
+.header {
+  transition: background-color 0.25s ease;
+}
