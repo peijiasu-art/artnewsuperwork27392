@@ -2222,3 +2222,30 @@ html, body {
 .header {
   transition: background-color 0.25s ease;
 }
+
+/* =========================================
+   FIX：輪播圖下方出現多餘框 / 空白區塊
+   （強制吃圖片原始高度，不被舊 CSS 撐開）
+   ========================================= */
+
+.heroCarouselViewport{
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden;
+}
+
+.heroCarouselTrack{
+  height: auto !important;
+}
+
+.heroCarouselSlide{
+  height: auto !important;
+}
+
+.heroCarouselImg{
+  display: block;
+  width: 100%;
+  height: auto !important;     /* ✅ 吃原圖高度 */
+  min-height: 0 !important;    /* ✅ 防止舊設定撐高 */
+  object-fit: contain;         /* 不裁切圖片 */
+}
