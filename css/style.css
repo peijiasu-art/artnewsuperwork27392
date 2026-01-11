@@ -2138,3 +2138,28 @@ body.home {
   transform: translateX(-50%);
   border-radius: 0;
 }
+/* ======================================
+   🔥 強制覆蓋：Hero 輪播「全螢幕滿版」
+   （不留左右空白，不吃舊 CSS）
+   ====================================== */
+
+.heroCarousel,
+.homeHero,
+.aboutHero,
+.artistsHero,
+.worksHero {
+  width: 100vw !important;
+  max-width: none !important;
+  margin: 0 !important;
+  margin-left: calc(50% - 50vw) !important; /* 關鍵 */
+  transform: none !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+/* 避免 body / container 撐出左右白邊 */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
