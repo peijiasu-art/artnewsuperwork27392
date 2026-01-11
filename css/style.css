@@ -1822,7 +1822,7 @@ body.home {
 .heroCarousel.artistsHeroImage,
 .heroCarousel.worksHeroImage{
   width: min(980px, calc(100% - 48px)) !important;
-  margin: 24px auto 0 !important;
+  margin:  auto 0 !important;
   margin-left: auto !important;
   transform: none !important;
 }
