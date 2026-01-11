@@ -2103,9 +2103,7 @@ body.home {
 .homeMain,
 .aboutMain,
 .artistsMain,
-.worksMain,
-.artistMain,
-.workMain {
+.worksMain{
   padding-top: 0;
 }
 .homeHero {
