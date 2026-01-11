@@ -1840,8 +1840,8 @@ body.home {
 }
 /* ===== 輪播：置中留白（B版）===== */
 .heroCarousel.heroCarousel--boxed{
-  width: min(980px, calc(100% - 48px)); /* 置中，左右留白 */
-  margin: 24px auto 0;
+  width: 100%; /* 置中，左右留白 */
+  margin:  auto 0;
   position: relative;
 
   /* ⭐ 防止舊 hero CSS 影響 */
