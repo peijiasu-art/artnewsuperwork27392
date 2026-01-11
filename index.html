@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Google Fonts：Noto Serif TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>異化／液化－何而為人？</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="home">
+
+<!-- ===== Header ===== -->
+<header class="header header--home">
+  <div class="container">
+    <div class="navbar navbar--home">
+      <div class="brand brand--home">
+        <span class="brandText">首頁</span>
+      </div>
+
+      <button class="menu-toggle menu-toggle--home" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- mobile menu -->
+  <nav class="mobile-menu mobile-menu--home">
+    <a class="active" href="index.html">首頁</a>
+    <a href="about.html">關於</a>
+    <a href="artists.html">藝術家</a>
+    <a href="works.html">作品</a>
+  </nav>
+</header>
+
+<!-- ===== Main ===== -->
+<main class="homeMain">
+
+  <!-- ⭐ 首頁主視覺：多張圖片（輪播） -->
+<section
+  class="heroCarousel heroCarousel--boxed"
+  data-images="images/hero/主視覺.JPG|images/hero/展覽預覽1.JPG|images/hero/展覽預覽2.JPG"
+  data-interval="4500"
+  aria-label="首頁主視覺輪播"
+>
+    <button class="heroCarouselBtn heroCarouselPrev" type="button" aria-label="上一張">‹</button>
+
+    <div class="heroCarouselViewport">
+      <div class="heroCarouselTrack"></div>
+    </div>
+
+    <button class="heroCarouselBtn heroCarouselNext" type="button" aria-label="下一張">›</button>
+    <div class="heroCarouselDots" aria-label="輪播頁碼"></div>
+  </section>
+
+  <!-- 四個按鈕 -->
+  <section class="homeButtons">
+    <a class="homeBtn is-current" href="index.html">首頁</a>
+    <a class="homeBtn" href="about.html">關於</a>
+    <a class="homeBtn" href="artists.html">藝術家</a>
+    <a class="homeBtn" href="works.html">作品</a>
+  </section>
+
+<section class="singleImage">
+  <img src="images/example.png" alt="圖片說明">
+</section>
+
+
+</main>
+
+<script src="js/menu.js"></script>
+<script src="js/hero-carousel.js"></script>
+
+</body>
+</html>
+

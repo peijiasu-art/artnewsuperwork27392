@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>藝術家｜Student Art Collective</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page-artists">
+
+<header class="header header--home">
+  <div class="container">
+    <div class="navbar navbar--home">
+      <div class="brand brand--home">
+        <span class="brandText">藝術家</span>
+      </div>
+
+      <button class="menu-toggle menu-toggle--home" aria-expanded="false" aria-label="開啟選單">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-menu mobile-menu--home" aria-label="行動版選單">
+    <a href="index.html">首頁</a>
+    <a href="about.html">關於</a>
+    <a class="active" href="artists.html">藝術家</a>
+    <a href="works.html">作品</a>
+  </nav>
+</header>
+
+<main class="artistsMain">
+<section
+  class="heroCarousel pageHero"
+  data-images="images/hero/主視覺.JPG|images/hero/展覽預覽1.JPG|images/hero/展覽預覽2.JPG"
+  data-interval="4500"
+>
+  <button class="heroCarouselBtn heroCarouselPrev" type="button" aria-label="上一張">‹</button>
+  <div class="heroCarouselViewport">
+    <div class="heroCarouselTrack"></div>
+  </div>
+  <button class="heroCarouselBtn heroCarouselNext" type="button" aria-label="下一張">›</button>
+  <div class="heroCarouselDots" aria-label="輪播頁碼"></div>
+</section>
+
+
+
+
+  <section class="artistsIntro">
+    <h1 class="artistsH1">參展藝術家</h1>
+    <p class="artistsLead">
+      藉由參展的六位藝術家，關於溶於液化的身份與異化的外表，從他們的生平與理念中逐漸走進本展的核心概念-何而為人？
+    </p>
+  </section>
+
+  <section class="artistsListWrap">
+    <div class="artistsListHeader">
+      <h2></h2>
+      <p></p>
+    </div>
+
+    <div id="artistsGrid" class="artistsGrid" aria-live="polite"></div>
+  </section>
+
+  <footer class="homeFooter"></footer>
+</main>
+
+<script src="js/menu.js"></script>
+
+<!-- ✅ 重要：資料一定要先載入，再載入產卡片的 js -->
+<script src="js/artists-data.js"></script>
+<script src="js/artists.js"></script>
+<script src="js/hero-carousel.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,2093 @@
+/* =========================================================
+   1. CSS 變數定義 (Design Tokens)
+   ========================================================= */
+:root {
+  /* === 基礎色彩系統 === */
+  --color-bg-primary: #42372d;
+  --color-text-primary: #f3f3f3;
+  --color-text-muted: rgba(243, 243, 243, 0.72);
+  --color-border-light: rgba(243, 243, 243, 0.14);
+  --color-card-bg: rgba(255, 255, 255, 0.04);
+  
+  /* === Home 頁面專用色彩 === */
+  --home-header: #A08D78;
+  --home-ink: #17110C;
+  --home-body: #42372d;
+  --home-white: #FEFEFE;
+  --home-black: #000000;
+  
+  /* === 陰影系統 === */
+  --shadow-base: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --shadow-sm: 0 10px 22px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 14px 28px rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 18px 46px rgba(0, 0, 0, 0.30);
+  --shadow-2xl: 0 24px 60px rgba(0, 0, 0, 0.30);
+  
+  /* === 間距系統 === */
+  --radius-base: 18px;
+  --radius-sm: 12px;
+  --radius-xs: 10px;
+  --radius-full: 999px;
+  
+  /* === 版面寬度 === */
+  --max-width: 1120px;
+  --max-width-content: 960px;
+  --max-width-wide: 1100px;
+  
+  /* === 字體設定 === */
+  --font-family: "Noto Serif TC", serif;
+  --letter-spacing: 0.2px;
+}
+
+/* =========================================================
+   2. 全域重設 (Reset & Base Styles)
+   ========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  letter-spacing: var(--letter-spacing);
+}
+
+/* === 基礎元素樣式 === */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* === 字體權重統一管理 === */
+h1, h2, h3, .brandText {
+  font-weight: 700;
+}
+
+p, .artistBio, .homeText {
+  font-weight: 400;
+}
+
+/* === 防止長字串爆版（所有頁面通用） === */
+p, li, a, b, span {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+   3. 版面佈局工具 (Layout Utilities)
+   ========================================================= */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* === 滿版元素（Full Bleed） === */
+.fullbleed {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* === 主要內容容器（防止雙滾動條） === */
+.homeMain,
+.artistsMain,
+.worksMain,
+.aboutMain,
+.artistMain,
+.workMain {
+  overflow: visible;
+  height: auto;
+  min-height: auto;
+}
+
+/* =========================================================
+   4. 頁首導航系統 (Header & Navigation)
+   ========================================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.header--home {
+  background: var(--home-header);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.brandText {
+  color: var(--home-ink);
+  font-weight: 800;
+  font-size: 20px;
+}
+
+/* === 漢堡選單按鈕 === */
+.menu-toggle {
+  border: 0;
+  background: transparent;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu-toggle .hamburger {
+  width: 22px;
+  height: 16px;
+  display: block;
+  background:
+    linear-gradient(var(--home-ink), var(--home-ink)) 0 0/100% 2px no-repeat,
+    linear-gradient(var(--home-ink), var(--home-ink)) 0 7px/100% 2px no-repeat,
+    linear-gradient(var(--home-ink), var(--home-ink)) 0 14px/100% 2px no-repeat;
+}
+
+/* === 手機版選單 === */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  padding: 8px 22px 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.mobile-menu.show {
+  display: flex;
+}
+
+.mobile-menu a {
+  padding: 14px 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  color: var(--home-ink);
+  font-weight: 600;
+}
+
+.mobile-menu a.active {
+  font-weight: 800;
+}
+
+/* =========================================================
+   5. 首頁專用樣式 (Homepage)
+   ========================================================= */
+body.home {
+  background: var(--home-body);
+  color: var(--home-white);
+}
+
+.homeMain {
+  max-width: none;
+  margin: 0;
+}
+
+/* === 首頁主視覺（輪播版） === */
+/* 舊背景 hero，暫時停用高度控制 */
+.homeHeroImage {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(254,254,254,.14);
+}
+
+/* === 首頁按鈕組 === */
+.homeButtons {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 12px;
+  padding: 16px 0 10px;
+}
+
+.homeBtn {
+  flex: 1;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--home-ink);
+  color: var(--home-white);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  transform: translateY(0);
+  box-shadow:
+    inset 0 0 0 1px rgba(254, 254, 254, 0.18),
+    var(--shadow-sm);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+}
+
+/* === 按鈕動畫效果 === */
+.homeBtn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background:
+    radial-gradient(600px 90px at 20% 0%, rgba(254, 254, 254, 0.10), transparent 60%),
+    radial-gradient(600px 90px at 80% 100%, rgba(254, 254, 254, 0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.homeBtn::after {
+  content: "";
+  position: absolute;
+  left: -40%;
+  bottom: 0;
+  width: 40%;
+  height: 3px;
+  background: var(--home-white);
+  opacity: 0;
+  transform: skewX(-18deg);
+  transition: left 0.35s ease, opacity 0.2s ease;
+}
+
+/* === 按鈕互動狀態 === */
+.homeBtn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 0 1px rgba(254, 254, 254, 0.28),
+    var(--shadow-md);
+  filter: brightness(1.06);
+}
+
+.homeBtn:hover::before {
+  opacity: 1;
+}
+
+.homeBtn:hover::after {
+  opacity: 1;
+  left: 110%;
+}
+
+.homeBtn:active {
+  transform: translateY(0px) scale(0.99);
+  filter: brightness(0.98);
+}
+
+.homeBtn:focus-visible {
+  outline: 3px solid rgba(254, 254, 254, 0.55);
+  outline-offset: 3px;
+}
+
+.homeBtn.is-current {
+  box-shadow:
+    inset 0 0 0 2px rgba(254, 254, 254, 0.22),
+    var(--shadow-sm);
+}
+
+/* === 首頁內容區 === */
+.homeText {
+  padding: 18px 22px 48px;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.homeFooter {
+  background: var(--home-body);
+  color: var(--home-white);
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================================
+   6. 關於頁面 (About Page)
+   ========================================================= */
+.page-about {
+  background: var(--color-bg-primary);
+  color: var(--home-white);
+}
+
+.aboutMain {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.aboutHeroImage {
+  height: 62vh;              /* ⭐ 重點在這 */
+  min-height: 420px;         /* 手機下限 */
+  max-height: 760px;         /* 大螢幕不爆 */
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(254,254,254,.14);
+}
+
+/* === 關於頁內容區 === */
+.aboutEssay {
+  width: 92%;
+  max-width: var(--max-width-content);
+  margin: 22px auto 0;
+  padding: 22px 0 8px;
+}
+
+.aboutH1 {
+  margin: 0 0 14px;
+  font-size: clamp(26px, 3.0vw, 44px);
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  color: var(--home-white);
+}
+
+.aboutProse {
+  background: rgba(23, 17, 12, 0.22);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-base);
+  padding: 18px;
+  box-shadow: var(--shadow-lg);
+}
+
+.aboutProse p {
+  margin: 0 0 12px;
+  line-height: 1.95;
+  font-size: 15px;
+  color: rgba(254, 254, 254, 0.90);
+}
+
+.aboutProse p:last-child {
+  margin-bottom: 0;
+}
+
+/* === 關於頁資訊卡片 === */
+.aboutMeta {
+  width: 92%;
+  max-width: var(--max-width-content);
+  margin: 14px auto 0;
+  padding-bottom: 10px;
+}
+
+.aboutMetaCard {
+  background: rgba(254, 254, 254, 0.94);
+  color: var(--home-ink);
+  border-radius: var(--radius-base);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-xl);
+}
+
+.aboutMetaRow {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 10px;
+  padding: 10px 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.aboutMetaRow:last-child {
+  border-bottom: 0;
+}
+
+.aboutMetaLabel {
+  font-size: 13px;
+  color: rgba(23, 17, 12, 0.70);
+  font-weight: 700;
+}
+
+.aboutMetaValue {
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+/* === 關於頁來源連結 === */
+.aboutSources {
+  display: grid;
+  gap: 8px;
+}
+
+.aboutSources a {
+  color: var(--home-ink);
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.75);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aboutSources a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   7. 藝術家頁面 (Artists Pages)
+   ========================================================= */
+.page-artists,
+.page-artist {
+  background: var(--color-bg-primary);
+  color: var(--home-white);
+}
+
+.artistsMain,
+.artistMain {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.artistsHeroImage {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(254,254,254,.14);
+}
+
+/* === 藝術家列表介紹區 === */
+.artistsIntro {
+  width: 92%;
+  max-width: var(--max-width-content);
+  margin: 22px auto 0;
+}
+
+.artistsH1 {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 3vw, 44px);
+  font-weight: 900;
+}
+
+.artistsLead {
+  margin: 0;
+  line-height: 1.95;
+  color: rgba(254, 254, 254, 0.90);
+  font-size: 15px;
+}
+
+/* === 藝術家列表容器 === */
+.artistsListWrap {
+  width: 92%;
+  max-width: var(--max-width-wide);
+  margin: 18px auto 0;
+  padding-bottom: 12px;
+}
+
+.artistsListHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+  padding: 10px 0 14px;
+  margin-bottom: 14px;
+}
+
+.artistsListHeader h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: var(--home-ink);
+}
+
+.artistsListHeader p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(23, 17, 12, 0.65);
+}
+
+/* === 藝術家網格佈局 === */
+.artistsGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+/* === 藝術家卡片 === */
+.artistCard {
+  grid-column: span 4;
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.artistCard:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.02);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.22);
+}
+
+.artistCardLink {
+  display: block;
+  height: 100%;
+}
+
+.artistThumb {
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.artistPad {
+  padding: 14px 14px 12px;
+}
+
+.artistTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.artistName {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #000;
+}
+
+.artistRole {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.artistBio {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.80);
+  font-size: 13px;
+  line-height: 1.75;
+  min-height: 64px;
+}
+
+.artistMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
+  color: rgba(0, 0, 0, 0.60);
+  font-size: 12px;
+}
+
+.artistMore {
+  font-weight: 800;
+  color: #000;
+}
+
+/* === 藝術家詳細頁 === */
+.artistHero {
+  width: 92%;
+  max-width: var(--max-width-wide);
+  margin: 18px auto 0;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-xl);
+}
+
+.artistBody {
+  width: 92%;
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding-bottom: 14px;
+}
+
+.artistBack {
+  display: inline-block;
+  color: rgba(254, 254, 254, 0.85);
+  margin-bottom: 10px;
+}
+
+.artistH1 {
+  margin: 0 0 6px;
+  font-size: clamp(26px, 3vw, 44px);
+  font-weight: 900;
+}
+
+.artistRoleBig {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(254, 254, 254, 0.18);
+  color: rgba(254, 254, 254, 0.85);
+  font-size: 13px;
+}
+
+.artistBioFull {
+  margin: 14px 0 0;
+  line-height: 1.95;
+  color: rgba(254, 254, 254, 0.92);
+}
+
+.artistH2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+
+.artistProse p {
+  margin: 0 0 12px;
+  line-height: 1.95;
+  color: rgba(254, 254, 254, 0.90);
+}
+
+.artistProse p:last-child {
+  margin-bottom: 0;
+}
+
+/* === 移除不需要的元素 === */
+.artistDivider,
+.artistKeywords,
+#artistKeywords {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* =========================================================
+   8. 作品頁面 (Works Pages)
+   ========================================================= */
+.page-works,
+.page-work {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.worksMain,
+.workMain {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.worksHeroImage {
+  height: 62vh;              /* ⭐ 重點在這 */
+  min-height: 420px;         /* 手機下限 */
+  max-height: 760px;         /* 大螢幕不爆 */
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(254,254,254,.14);
+}
+
+/* === 作品列表介紹區 === */
+.worksIntro {
+  width: 92%;
+  max-width: var(--max-width-content);
+  margin: 22px auto 0;
+}
+
+.worksH1 {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 3vw, 44px);
+  font-weight: 900;
+  color: var(--home-white);
+}
+
+.worksLead {
+  margin: 0;
+  line-height: 1.95;
+  color: rgba(254, 254, 254, 0.90);
+  font-size: 15px;
+}
+
+/* === 作品列表容器 === */
+.worksListWrap {
+  width: 92%;
+  max-width: var(--max-width-wide);
+  margin: 18px auto 0;
+  padding-bottom: 12px;
+}
+
+.worksListHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--color-border-light);
+  padding: 10px 0 14px;
+  margin-bottom: 14px;
+}
+
+.worksListHeader h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: var(--home-white);
+}
+
+.worksListHeader p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(254, 254, 254, 0.70);
+}
+
+/* === 作品網格佈局 === */
+.worksGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+/* === 作品卡片 === */
+.workCardItem {
+  grid-column: span 4;
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  background: var(--home-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.workCardItem:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+  box-shadow: var(--shadow-2xl);
+}
+
+.workCardLink {
+  display: block;
+  height: 100%;
+  color: var(--home-ink);
+}
+
+/* === 作品卡片縮圖（不裁切版本） === */
+.workThumb {
+  width: 100%;
+  aspect-ratio: 5 / 6;              /* 直式作品常見比例，可之後再調 */
+  background-size: contain;         /* ✅ 關鍵：完整顯示作品 */
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* 淡淡的底，像畫框，避免留白太突兀 */
+  background-color: rgba(255, 255, 255, 0.06);
+
+  border-radius: 4px;               /* 跟你整體風格一致可留 */
+}
+
+
+.workPad {
+  padding: 14px 14px 12px;
+}
+
+.workTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.workName {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.workBadge {
+  font-size: 12px;
+  color: rgba(23, 17, 12, 0.85);
+  border: 1px solid rgba(23, 17, 12, 0.18);
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(23, 17, 12, 0.04);
+}
+
+/* === 作品卡片資訊 === */
+.workArtist {
+  margin: 8px 0 10px;
+  font-weight: 900;
+  color: rgba(23, 17, 12, 0.88);
+  line-height: 1.25;
+}
+
+.workLine {
+  margin: 8px 0 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(23, 17, 12, 0.72);
+  letter-spacing: 0.2px;
+}
+
+.workSub {
+  margin: 0;
+  color: rgba(23, 17, 12, 0.78);
+  font-size: 13px;
+  line-height: 1.75;
+  min-height: 44px;
+}
+
+.workSpecs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.specPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(23, 17, 12, 0.82);
+  border: 1px solid rgba(23, 17, 12, 0.14);
+  background: rgba(23, 17, 12, 0.04);
+}
+
+.workMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(23, 17, 12, 0.65);
+  font-size: 12px;
+}
+
+.workMore {
+  font-weight: 900;
+}
+
+/* === 作品詳細頁 === */
+.brandBack {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
+  border-radius: var(--radius-xs);
+  color: var(--home-ink);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.workHero {
+  width: 92%;
+  max-width: var(--max-width-wide);
+  margin: 22px auto 0;
+}
+
+.workHeroMedia {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-base);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(254, 254, 254, 0.12);
+}
+
+.workCard {
+  width: 85%;
+  max-width: var(--max-width-wide);
+  margin: 16px auto 0;
+  background: var(--home-white);
+  color: var(--home-ink);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-xl);
+  padding: 18px 18px 16px;
+}
+
+.workTitle {
+  margin: 0 0 14px;
+  font-size: clamp(22px, 2.6vw, 36px);
+  font-weight: 900;
+}
+
+.workByline {
+  margin: 6px 0 14px;
+}
+
+.workBy {
+  font-weight: 900;
+  color: rgba(23, 17, 12, 0.82);
+  line-height: 1.25;
+}
+
+/* === 作品詳細資訊網格 === */
+.workFacts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.workFact {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: rgba(23, 17, 12, 0.04);
+}
+
+.workFact span {
+  display: block;
+  font-size: 12px;
+  color: rgba(23, 17, 12, 0.65);
+  margin-bottom: 6px;
+}
+
+.workFact b {
+  font-weight: 900;
+  font-size: 14px;
+}
+
+/* === 作品內容描述 === */
+.workBody p {
+  margin: 0 0 14px;
+  line-height: 2.0;
+  font-size: 22px;
+  color: rgba(23, 17, 12, 0.84);
+}
+
+.workBody p:last-child {
+  margin-bottom: 56px;
+}
+
+/* === 作品頁按鈕 === */
+.workActions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.workBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--home-ink);
+  color: var(--home-white);
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.workBtn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.workBtn:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* =========================================================
+   9. 頁尾 (Footer)
+   ========================================================= */
+.siteFooter {
+  background: var(--home-body);
+  color: var(--home-white);
+  font-size: 18px;
+  text-align: center;
+  padding: 32px 24px;
+  margin-top: 22px;
+}
+
+/* =========================================================
+   10. 響應式設計 (Responsive Design)
+   ========================================================= */
+@media (max-width: 980px) {
+  /* === 藝術家卡片：平板兩欄 === */
+  .artistCard {
+    grid-column: span 6;
+  }
+  
+  /* === 作品卡片：平板兩欄 === */
+  .workCardItem {
+    grid-column: span 6;
+  }
+  
+  /* === 作品詳細資訊：兩欄 === */
+  .workFacts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* === 縮小主視覺高度 === */
+  .homeHeroImage,
+  .aboutHeroImage,
+  .artistsHeroImage,
+  .worksHeroImage {
+    min-height: 260px;
+  }
+  
+  /* === 首頁按鈕調整 === */
+  .homeButtons {
+    width: 92%;
+    gap: 8px;
+  }
+  
+  .homeBtn {
+    font-size: 14px;
+    height: 42px;
+  }
+  
+  /* === 關於頁調整 === */
+  .aboutProse {
+    padding: 16px;
+  }
+  
+  .aboutMetaRow {
+    grid-template-columns: 82px 1fr;
+  }
+  
+  /* === 藝術家詳細頁調整 === */
+  .artistHero {
+    width: 92%;
+    aspect-ratio: 4 / 3;
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* === 卡片單欄顯示 === */
+  .artistCard,
+  .workCardItem {
+    grid-column: span 12;
+  }
+  
+  .artistThumb {
+    height: 200px;
+  }
+  
+  /* === 作品詳細資訊：單欄 === */
+  .workFacts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   11. 無障礙與動畫控制 (Accessibility)
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .homeBtn,
+  .homeBtn::before,
+  .homeBtn::after,
+  .artistCard,
+  .workCardItem,
+  .aboutSources a,
+  .workBtn {
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   12. 列印樣式 (Print Styles)
+   ========================================================= */
+@media print {
+  /* 隱藏導航和互動元素 */
+  .header,
+  .mobile-menu,
+  .homeButtons,
+  .workActions,
+  .siteFooter {
+    display: none !important;
+  }
+  
+  /* 調整背景色以節省墨水 */
+  body {
+    background: white;
+    color: black;
+  }
+  
+  /* 移除陰影效果 */
+  * {
+    box-shadow: none !important;
+  }
+}
+/* ===== About：策展人 Chips ===== */
+.aboutChips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.aboutChips .chip{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.92);
+  color:#17110c;
+  font-weight:900;
+  letter-spacing:.2px;
+  line-height:1;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+}
+/* =========================
+   WORK DETAIL: Carousel + No Box Body
+   ========================= */
+
+/* 輪播外框：沿用你原本 workHeroMedia 的位置，但做成輪播 */
+.workCarousel{
+  width: min(920px, 92vw);  /* ⭐ 外框大小：桌機最多 920px，手機跟著縮 */
+  margin: 0 auto;           /* ⭐ 置中 */
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;         /* 你要直角就改 0（或保留 18px） */
+  border: 1px solid rgba(254,254,254,.12);
+  box-shadow: 0 18px 44px rgba(0,0,0,.35);
+  background: rgba(0,0,0,.18);
+  aspect-ratio: 16 / 9;     /* 16:9 不用改 */
+}
+
+
+/* 視窗 */
+.workCarouselViewport{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 轨道 */
+.workCarouselTrack{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transform: translateX(0%);
+  transition: transform .28s ease;
+}
+
+/* 每張 */
+.workCarouselSlide{
+  flex: 0 0 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.18);
+}
+
+/* 圖片：尺寸不同也能塞進固定比例 */
+.workCarouselImg{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ✅ 不裁切 */
+  object-position: center;
+  display: block;
+}
+
+
+/* 左右按鈕 */
+.workCarouselBtn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(254,254,254,.18);
+  background: rgba(23,17,12,.55);
+  color: #fefefe;
+  font-size: 28px;
+  line-height: 0;
+  cursor: pointer;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  transition: transform .15s ease, filter .15s ease, background .15s ease;
+}
+.workCarouselBtn:hover{
+  transform: translateY(-50%) scale(1.03);
+  filter: brightness(1.05);
+}
+.workCarouselPrev{ left: 10px; }
+.workCarouselNext{ right: 10px; }
+
+/* dots */
+.workCarouselDots{
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(23,17,12,.45);
+  border: 1px solid rgba(254,254,254,.12);
+}
+.workCarouselDot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(254,254,254,.35);
+  cursor: pointer;
+}
+.workCarouselDot.is-active{
+  background: rgba(254,254,254,.95);
+}
+
+/* RWD */
+@media (max-width:768px){
+  .workCarouselBtn{
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+}
+
+/* =========================
+   WORK DETAIL: Facts compact (不要整條白框那種感覺)
+   ========================= */
+
+.workFactsCompact{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 10px;
+}
+
+.workFactMini{
+  padding: 10px 10px 8px;
+  border-radius: 14px;
+  background: rgba(23,17,12,.10);
+  border: 1px solid rgba(23,17,12,.12);
+}
+
+.workFactMini span{
+  display: block;
+  font-size: 12px;
+  color: rgba(23,17,12,.65);
+  margin-bottom: 6px;
+}
+
+.workFactMini b{
+  display: block;
+  font-weight: 900;
+  color: #17110c;
+  font-size: 14px;
+}
+
+/* 小螢幕：改成 2 欄 / 1 欄 */
+@media (max-width:980px){
+  .workFactsCompact{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width:640px){
+  .workFactsCompact{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   WORK DETAIL: Body no box (文字不要框)
+   ========================= */
+.workBodyNoBox p{
+  margin: 0 0 12px;
+  line-height: 1.95;
+  font-size: 14px;
+  color: rgba(23,17,12,.86);
+}
+.workBodyNoBox p:last-child{ margin-bottom: 0; }
+
+/* =========================
+   WORK CARD LIST: meta line
+   ========================= */
+.workLine{
+  margin: 8px 0 0;
+  color: rgba(23,17,12,.78);
+  font-size: 13px;
+  line-height: 1.6;
+}
+/* =========================
+   HERO Carousel (All pages top banner)
+   ========================= */
+
+.heroCarousel{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 你原本每頁最上方 hero 都是滿版背景圖高度
+   這邊用 min-height 控制（你也可以改成固定高度） */
+.heroCarouselViewport{
+  width: 100%;
+  min-height: 56vh;  /* 想跟首頁一樣高就調這裡 */
+  overflow: hidden;
+}
+
+.heroCarouselTrack{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transform: translateX(0%);
+  transition: transform .35s ease;
+}
+
+.heroCarouselSlide{
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+}
+
+.heroCarouselImg{
+  width: 100%;
+  height: 100%;
+  min-height: 56vh;
+  object-fit: cover;
+  display: block;
+}
+
+/* 上面那層暗色漸層（讓文字/導覽更清楚） */
+.heroCarousel::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.40));
+  pointer-events: none;
+}
+
+/* 左右按鈕 */
+.heroCarouselBtn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(254,254,254,.18);
+  background: rgba(23,17,12,.55);
+  color: #fefefe;
+  font-size: 28px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 3;
+}
+.heroCarouselPrev{ left: 12px; }
+.heroCarouselNext{ right: 12px; }
+
+/* dots */
+.heroCarouselDots{
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(23,17,12,.45);
+  border: 1px solid rgba(254,254,254,.12);
+  z-index: 3;
+}
+
+.heroDot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(254,254,254,.35);
+  cursor: pointer;
+}
+.heroDot.is-active{
+  background: rgba(254,254,254,.95);
+}
+
+/* 手機時降低高度 */
+@media (max-width: 768px){
+  .heroCarouselViewport{ min-height: 44vh; }
+  .heroCarouselImg{ min-height: 44vh; }
+}
+.heroCarousel,
+.heroCarouselTrack,
+.heroCarouselSlide,
+.heroCarouselImg {
+  height: 100%;
+}
+
+.heroCarouselImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* 🔑 尺寸不同也不會歪 */
+  object-position: center;
+}
+
+.homeHero,
+.aboutHero,
+.artistsHero,
+.worksHero {
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  overflow: hidden;
+  position: relative;
+}
+
+.heroCarousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.heroCarouselImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* ===== Hero Carousel（高度隨圖片） ===== */
+
+/* === Hero 輪播（全寬） === */
+.heroCarousel {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
+/* viewport / track */
+.heroCarouselViewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.heroCarouselTrack {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+/* 單張 slide */
+.heroCarouselSlide {
+  flex: 0 0 100%;
+}
+
+/* 圖片本體 */
+.heroCarouselImg {
+  width: 100%;
+  height: auto;          /* ⭐ 吃圖片本身比例 */
+  display: block;
+  object-fit: cover;
+}
+/* =========================
+   Hero Carousel 兩種版本
+========================= */
+
+/* 共用 */
+.heroCarousel {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🅰 全寬版本 */
+.heroCarousel--full {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 🅱 置中版本（左右留邊） */
+.heroCarousel--boxed {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 2px;  /* 可選，看你要不要 */
+}
+
+/* 圖片比例自適應 */
+/* ✅ 圖片完整顯示：不裁切 */
+.heroCarouselImg{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* 🔑 改這個：cover -> contain */
+  object-position: center;
+  background: #000;           /* 可選：兩側/上下留黑邊，不會露出底色 */
+}
+
+/* === About：B 版本（置中留邊輪播） === */
+.aboutHero {
+  width: 100%;
+  display: flex;
+  justify-content: center;  /* ✅ 置中 */
+}
+
+.heroCarousel--boxed {
+  width: min(100%, 980px);  /* ✅ 最大寬度可自己調 */
+  margin: 0 auto;           /* ✅ 保底置中 */
+  overflow: hidden;
+}
+
+.heroCarouselViewport {
+  width: 100%;
+}
+/* === 統一：所有頁的主視覺輪播都跟首頁一樣（滿版全寬）=== */
+.pageHero.heroCarousel {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(254, 254, 254, 0.14);
+}
+
+/* 高度跟你首頁一樣（不要寫死 px，跟螢幕走） */
+.pageHero.heroCarousel .heroCarouselViewport {
+  height: calc(100vh - 72px);
+}
+
+/* 讓圖片一定填滿、置中 */
+.pageHero.heroCarousel .heroCarouselImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* 舊 heroImage 不再使用：避免干擾輪播 */
+.aboutHeroImage,
+.artistsHeroImage,
+.worksHeroImage,
+.homeHeroImage {
+  background-image: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+
+/* =========================
+   HERO CAROUSEL (canonical)
+   放在最底下，確保不被前面覆蓋
+   ========================= */
+.heroCarousel{
+  width:100vw;
+  margin-left:50%;
+  transform:translateX(-50%);
+  overflow:hidden;
+  border-bottom:1px solid rgba(254,254,254,.14);
+  position:relative;
+}
+
+/* 高度：跟螢幕走（不寫死圖片尺寸） */
+.heroCarousel .heroCarouselViewport{
+  height:calc(100vh - 72px);
+  min-height:420px;
+  max-height:760px;
+}
+
+/* Track / Slide */
+.heroCarousel .heroCarouselTrack{
+  height:100%;
+  display:flex;
+  transition:transform .5s ease;
+  will-change:transform;
+}
+.heroCarousel .heroCarouselSlide{
+  flex:0 0 100%;
+  height:100%;
+}
+.heroCarousel .heroCarouselImg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+/* 左右按鈕（如果你有用） */
+.heroCarousel .heroCarouselBtn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:5;
+}
+.heroCarousel .heroCarouselPrev{ left:12px; }
+.heroCarousel .heroCarouselNext{ right:12px; }
+
+/* dots（如果你有用） */
+.heroCarousel .heroCarouselDots{
+  position:absolute;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  z-index:5;
+  display:flex;
+  gap:8px;
+}
+/* ===== Hero 輪播：做法 A（比例固定、不裁切） ===== */
+.heroCarousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 輪播可視區 */
+.heroCarouselViewport {
+  width: 100%;
+  aspect-ratio: 1724 / 950;   /* 🔑 用比例，不用寫死高度 */
+  overflow: hidden;
+}
+
+/* Track & Slide 撐滿 */
+.heroCarouselTrack,
+.heroCarouselSlide {
+  width: 100%;
+  height: 100%;
+}
+/* 你原本每頁最上方 hero 都是滿版背景圖高度
+   這邊用 min-height 控制（你也可以改成固定高度） */
+.heroCarouselViewport{
+  width: 100%;
+  min-height: 56vh;  /* 想跟首頁一樣高就調這裡 */
+  overflow: hidden;
+}
+/* =========================
+   Hero Carousel - 做法A（不裁切 / 高度吃圖片原始比例）
+   請放在 style.css 最下方
+   ========================= */
+
+/* 取消寫死高度（不再用 100vh / 56vh 這種） */
+.heroCarouselViewport{
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: hidden;
+}
+
+/* track/slide 不要硬撐 100% 高度 */
+.heroCarouselTrack,
+.heroCarouselSlide{
+  height: auto !important;
+}
+
+/* 圖片：寬 100%，高 auto → 不裁切 */
+.heroCarouselImg{
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  display: block;
+  object-fit: contain !important;   /* 保險：不裁切 */
+  object-position: center;
+}
+
+/* 如果你之前有把這四個設成 min-height: calc(100vh - 72px) 也會逼高 */
+.homeHero,
+.aboutHero,
+.artistsHero,
+.worksHero{
+  min-height: 0 !important;
+}
+/* =========================
+   Hero Carousel - 做法B（置中卡片 / 左右留空）
+   請放在 style.css 最下方
+   ========================= */
+
+/* 讓整個輪播區塊不要滿版，而是像一張置中的圖 */
+.heroCarousel{
+  width: min(980px, calc(100% - 48px)); /* 左右留空 */
+  margin: 0 auto;                        /* 置中 */
+  border-bottom: 0;                      /* 不要滿版底線 */
+  overflow: hidden;
+  border-radius: 14px;                   /* 可選：像卡片 */
+  box-shadow: 0 18px 40px rgba(0,0,0,.18); /* 可選：更像截圖 */
+}
+
+/* 輪播視窗高度不要寫死 */
+.heroCarouselViewport{
+  height: auto !important;
+}
+
+/* 圖片：不裁切，完整顯示 */
+.heroCarouselImg{
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  object-fit: contain !important;
+  background: transparent;
+}
+
+/* 左右按鈕不要跑到螢幕邊，貼著輪播卡片 */
+.heroCarouselBtn{
+  top: 50%;
+  transform: translateY(-50%);
+}
+.heroCarouselPrev{ left: 10px; }
+.heroCarouselNext{ right: 10px; }
+/* ===== Hero Carousel 修正：不裁切 + 直角 ===== */
+
+/* 輪播外框（置中留白版：左右會留空是正常的） */
+.heroCarousel{
+  width: min(980px, calc(100% - 48px));
+  margin: 24px auto 0;
+}
+
+/* ✅ 直角：把所有圓角取消 */
+.heroCarousel,
+.heroCarouselViewport,
+.heroCarouselSlide,
+.heroCarouselImg{
+  border-radius: 0 !important;
+}
+
+/* ✅ 不要裁切：高度跟圖片走 */
+.heroCarouselViewport{
+  overflow: hidden;
+  height: auto;         /* 讓內容決定高度 */
+}
+
+/* Track 用 flex，確保每張都是 100% 寬 */
+.heroCarouselTrack{
+  display: flex;
+  transition: transform .45s ease;
+  will-change: transform;
+}
+
+/* 每張 slide 佔滿一個畫面寬 */
+.heroCarouselSlide{
+  flex: 0 0 100%;
+}
+
+/* ✅ 圖片用原始比例顯示，不裁切 */
+.heroCarouselImg{
+  display: block;
+  width: 100%;
+  height: auto;         /* 讓圖片高度自動 */
+  object-fit: contain;  /* 關鍵：不裁切 */
+  object-position: center;
+}
+
+/* 按鈕置中（避免跟著高度變怪） */
+.heroCarouselBtn{
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* dots 不影響版面 */
+.heroCarouselDots{
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+}
+/* ===== 修正：避免舊的 100vw + translate 影響輪播定位 ===== */
+.heroCarousel{
+  display: block !important;
+  width: min(980px, calc(100% - 48px)) !important; /* 置中留白版 */
+  margin: 24px auto 0 !important;
+
+  /* ⭐ 清掉舊滿版偏移 */
+  margin-left: auto !important;
+  transform: none !important;
+  left: auto !important;
+  right: auto !important;
+  position: relative !important;
+}
+
+/* 如果你輪播 section 仍然同時掛了 artistsHeroImage/homeHeroImage 之類，
+   那些舊 CSS 可能也會動到它。這裡直接把那些「滿版偏移」清掉。 */
+.heroCarousel.homeHeroImage,
+.heroCarousel.aboutHeroImage,
+.heroCarousel.artistsHeroImage,
+.heroCarousel.worksHeroImage{
+  width: min(980px, calc(100% - 48px)) !important;
+  margin: 24px auto 0 !important;
+  margin-left: auto !important;
+  transform: none !important;
+}
+
+/* ✅ 不裁切：圖片完整顯示 */
+.heroCarouselViewport{ height: auto !important; overflow: hidden; }
+.heroCarouselImg{ width: 100% !important; height: auto !important; object-fit: contain !important; }
+
+/* ✅ 直角（不要圓角） */
+.heroCarousel,
+.heroCarouselViewport,
+.heroCarouselSlide,
+.heroCarouselImg{
+  border-radius: 0 !important;
+}
+/* ===== 輪播：置中留白（B版）===== */
+.heroCarousel.heroCarousel--boxed{
+  width: min(980px, calc(100% - 48px)); /* 置中，左右留白 */
+  margin: 24px auto 0;
+  position: relative;
+
+  /* ⭐ 防止舊 hero CSS 影響 */
+  margin-left: auto;
+  transform: none;
+  left: auto;
+  right: auto;
+
+  border-radius: 0; /* 直角 */
+  overflow: hidden;
+}
+
+/* viewport 不固定高度，跟著圖片比例走 */
+.heroCarousel--boxed .heroCarouselViewport{
+  height: auto;
+  overflow: hidden;
+}
+
+/* 圖片：完整顯示（不裁切），高度跟著原圖 */
+.heroCarousel--boxed .heroCarouselImg{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 0; /* 直角 */
+}
+
+/* 如果你的 JS 用 slide div 包 img，也一起保險 */
+.heroCarousel--boxed .heroCarouselSlide,
+.heroCarousel--boxed .heroCarouselTrack{
+  border-radius: 0;
+}
+.singleImage {
+  display: flex;
+  justify-content: center;   /* 水平置中 */
+  padding: 40px 24px;        /* ⭐ 左右留空的關鍵 */
+  box-sizing: border-box;
+}
+
+.singleImage img {
+  max-width: 900px;          /* ⭐ 控制圖片最大寬度 */
+  width: 100%;
+  height: auto;              /* 不裁圖 */
+  display: block;
+}
+
+/* 回到作品清單（輪播圖與內容之間） */
+.workBackWrap{
+  width: min(920px, 92vw);   /* 跟輪播圖、內容同寬 */
+  margin: 18px auto 0;
+}
+
+.artistBack{
+  display: inline-block;
+  font-size: 18px;
+  color: rgba(254,254,254,.75);
+  text-decoration: none;
+  transition: color .15s ease, transform .15s ease;
+}
+
+.artistBack:hover{
+  color: #fefefe;
+  transform: translateX(-2px);
+}
+/* =========================
+   ARTIST DETAIL — Carousel
+   與作品頁共用尺寸與比例
+   ========================= */
+
+.artistHero .artistCarousel{
+  width: min(920px, 92vw);   /* 跟作品同寬 */
+  margin: 0 auto;            /* 置中 */
+  aspect-ratio: 16 / 9;      /* 16:9 */
+}
+/* =========================
+   首頁按鈕：手機版改為直向排列
+   ========================= */
+@media (max-width: 640px) {
+  .homeButtons {
+    flex-direction: column;  /* ⬅️ 關鍵 */
+    gap: 14px;
+    padding: 20px 16px 16px;
+  }
+
+  .homeBtn {
+    height: 74px;            /* 手機好點 */
+    font-size: 24px;
+    letter-spacing: 1.2px;
+    font-weight: 800;
+  }
+}
+/* ===== Artist Carousel arrows: center & consistent ===== */
+.artistCarousel{
+  position: relative; /* 讓按鈕以輪播容器定位 */
+}
+
+.artistCarouselBtn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;      /* 如果你要直角，把這行改成 0 */
+  border: 1px solid rgba(254,254,254,.18);
+  background: rgba(23,17,12,.55);
+  color: #fefefe;
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.artistCarouselPrev{ left: 12px; }
+.artistCarouselNext{ right: 12px; }
+
+/* 手機按鈕稍微小一點 */
+@media (max-width: 768px){
+  .artistCarouselBtn{
+    width: 38px;
+    height: 38px;
+  }
+  .artistCarouselPrev{ left: 10px; }
+  .artistCarouselNext{ right: 10px; }
+}
+.artistCarouselViewport{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* =========================
+   ARTIST DETAIL — Carousel（補齊版）
+   ========================= */
+/* ❌ 舊 hero 外框全部拔掉 */
+.artistHero,
+.artistHeroImage,
+.artistHeroMedia {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+/* ✅ 外框：跟作品同邏輯（16:9），且直角 */
+.artistHero .artistCarousel{
+  width: min(920px, 92vw);
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 0; /* ✅ 直角（不要圓角） */
+  border: 1px solid rgba(254,254,254,.12);
+  box-shadow: 0 18px 44px rgba(0,0,0,.35);
+  background: rgba(0,0,0,.18);
+}
+
+/* 視窗 */
+.artistCarouselViewport{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ✅ 轨道：一定要 flex，不然會變並排怪怪的 */
+.artistCarouselTrack{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transform: translateX(0%);
+  transition: transform .28s ease;
+}
+
+/* ✅ 每張：一定要 100% 寬 */
+.artistCarouselSlide{
+  flex: 0 0 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.18);
+}
+
+/* ✅ 圖片：不裁切（避免你說的切一半） */
+.artistCarouselImg{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* 不裁圖 */
+  object-position: center;
+  display: block;
+  background: #000;      /* 留黑邊不會露底色 */
+}
+
+/* 按鈕：位置看起來怪通常是 line-height/padding 沒控好 */
+.artistCarouselBtn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  line-height: 1;
+  font-size: 30px;
+
+  border-radius: 999px; /* 這是按鈕圓不圓；你要直角就改 0 */
+  border: 1px solid rgba(254,254,254,.18);
+  background: rgba(23,17,12,.55);
+  color: #fefefe;
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.artistCarouselPrev{ left: 12px; }
+.artistCarouselNext{ right: 12px; }
+
+/* dots */
+.artistCarouselDots{
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(23,17,12,.45);
+  border: 1px solid rgba(254,254,254,.12);
+}
+
+.artistCarouselDot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(254,254,254,.35);
+  cursor: pointer;
+}
+
+.artistCarouselDot.is-active{
+  background: rgba(254,254,254,.95);
+}
+
+/* RWD */
+@media (max-width:768px){
+  .artistCarouselBtn{
+    width: 38px;
+    height: 38px;
+    font-size: 26px;
+  }
+  .artistCarouselPrev{ left: 10px; }
+  .artistCarouselNext{ right: 10px; }
+}

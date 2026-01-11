@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>作品｜異化/液化-何而為人？</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page-work">
+
+<header class="header header--home">
+  <div class="container">
+    <div class="navbar navbar--home">
+      <div class="brand brand--home">
+        <a class="brandBack" href="works.html" aria-label="回作品清單">←</a>
+        <span class="brandText">作品</span>
+      </div>
+
+      <button class="menu-toggle menu-toggle--home" aria-expanded="false" aria-label="開啟選單">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-menu mobile-menu--home" aria-label="行動版選單">
+    <a href="index.html">首頁</a>
+    <a href="about.html">關於</a>
+    <a href="artists.html">藝術家</a>
+    <a href="works.html" class="active">作品</a>
+  </nav>
+</header>
+
+<main class="workMain">
+
+  <section class="workHero">
+    <!-- ✅ 輪播容器（JS 塞圖片進 #workCarouselTrack） -->
+    <div id="workCarousel" class="workHeroMedia workCarousel" aria-label="作品圖片輪播">
+      <button class="workCarouselBtn workCarouselPrev" type="button" aria-label="上一張">‹</button>
+
+      <div class="workCarouselViewport">
+        <div id="workCarouselTrack" class="workCarouselTrack"></div>
+      </div>
+
+      <button class="workCarouselBtn workCarouselNext" type="button" aria-label="下一張">›</button>
+
+      <div id="workCarouselDots" class="workCarouselDots" aria-label="輪播頁碼"></div>
+    </div>
+  </section>
+  
+
+  
+  <section class="workCard">
+    <h1 id="workTitle" class="workTitle"></h1>
+
+    <div class="workFacts workFactsCompact">
+      <div class="workFactMini">
+        <span>作者</span>
+        <b id="workArtist"></b>
+      </div>
+      <div class="workFactMini">
+        <span>年份</span>
+        <b id="workYear"></b>
+      </div>
+      <div class="workFactMini">
+        <span>媒材</span>
+        <b id="workMedium"></b>
+      </div>
+      <div class="workFactMini">
+        <span>尺寸</span>
+        <b id="workSize"></b>
+      </div>
+    </div>
+
+    <!-- ✅ 內文：JS 會用 <p> 分段 -->
+    <div id="workBody" class="workBody workBodyNoBox"></div>
+  </section>
+
+  <footer class="homeFooter"></footer>
+</main>
+
+<script src="js/menu.js"></script>
+<script src="js/works-data.js"></script>
+<script src="js/work.js"></script>
+</body>
+</html>

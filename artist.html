@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>藝術家｜Student Art Collective</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page-artist">
+
+<header class="header header--home">
+  <div class="container">
+    <div class="navbar navbar--home">
+      <div class="brand brand--home">
+        <a class="brandBack" href="artists.html" aria-label="回藝術家清單">←</a>
+        <span class="brandText">藝術家</span>
+      </div>
+
+      <button class="menu-toggle menu-toggle--home" aria-expanded="false" aria-label="開啟選單">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-menu mobile-menu--home" aria-label="行動版選單">
+    <a href="index.html">首頁</a>
+    <a href="about.html">關於</a>
+    <a class="active" href="artists.html">藝術家</a>
+    <a href="works.html">作品</a>
+  </nav>
+</header>
+
+<main class="artistMain">
+  <!-- ✅ 16:9 圖（你已經有 CSS .artistHero 的設定） -->
+<section class="artistHero">
+  <div id="artistCarousel" class="artistCarousel" aria-label="藝術家圖片輪播">
+    <button class="artistCarouselBtn artistCarouselPrev" type="button" aria-label="上一張">‹</button>
+
+    <div class="artistCarouselViewport">
+      <div id="artistCarouselTrack" class="artistCarouselTrack"></div>
+    </div>
+
+    <button class="artistCarouselBtn artistCarouselNext" type="button" aria-label="下一張">›</button>
+
+    <div id="artistCarouselDots" class="artistCarouselDots" aria-label="輪播頁碼"></div>
+  </div>
+</section>
+
+
+
+  <section class="artistBody">
+    <h1 id="artistName" class="artistH1"></h1>
+    <div id="artistRole" class="artistRoleBig"></div>
+
+    <!-- ✅ 卡片的短介紹（可選） -->
+    <div id="artistBio" class="artistBioFull"></div>
+
+
+
+    <!-- ✅ 詳細介紹：每位藝術家都不同 -->
+    <div id="artistDetail" class="artistProse"></div>
+
+    <!-- 你之前說詳細頁不要顯示關鍵字，所以這裡不放 keywords 區塊 -->
+  </section>
+
+  <footer class="homeFooter"></footer>
+</main>
+
+<script src="js/menu.js"></script>
+<script src="js/artists-data.js"></script>
+<script src="js/artist.js"></script>
+</body>
+</html>
+
