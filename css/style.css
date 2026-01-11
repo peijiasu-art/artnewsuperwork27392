@@ -2113,3 +2113,28 @@ body.home {
   min-height: 100vh; /* 🔑 關鍵 */
   overflow: hidden;
 }
+/* =========================
+   HERO 輪播：全寬滿版（左右不留空）
+   ========================= */
+.heroCarousel{
+  width: 100vw;           /* ✅ 滿版 */
+  margin-left: 50%;       /* ✅ 置中到視窗 */
+  transform: translateX(-50%);
+  border-radius: 0;       /* ✅ 直角（不要圓角） */
+}
+
+/* 保險：避免任何上層容器限制寬度 */
+.heroCarouselViewport{
+  width: 100%;
+}
+
+/* 如果你之前有把 hero 的輪播寫成 min(920px, 92vw) 之類的，這裡直接覆蓋掉 */
+.homeHero.heroCarousel,
+.aboutHero.heroCarousel,
+.artistsHero.heroCarousel,
+.worksHero.heroCarousel{
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
