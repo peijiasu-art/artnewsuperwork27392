@@ -2222,3 +2222,38 @@ html, body {
 }
 
 
+/* =========================
+   Header overlay 只給「清單頁」用
+   詳細頁（artist.html / work.html）照舊不重疊
+   ========================= */
+
+/* 1) 清單頁：導覽列疊在輪播上（透明） */
+/* 你目前的 body class：home、page-about、page-artists、page-works */
+body.home .header,
+body.page-about .header,
+body.page-artists .header,
+body.page-works .header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 1000;
+}
+
+/* 2) 詳細頁：恢復「不重疊」：header 佔版面高度（sticky） */
+/* 你的詳細頁 body class：page page-artist、page page-work */
+body.page-artist .header,
+body.page-work .header{
+  position: sticky;
+  top: 0;
+  background: var(--home-header); /* 你原本棕色那個 header 背景 */
+  z-index: 1000;
+}
+
+/* 3) 重要：如果你之前全站有寫 .header--home { background: transparent; }
+      這裡強制讓詳細頁的 header 不是透明 */
+body.page-artist .header--home,
+body.page-work .header--home{
+  background: var(--home-header) !important;
+}
